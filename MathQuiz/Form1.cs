@@ -64,6 +64,9 @@ namespace MathQuiz
         private void btnReset_Click(object sender, EventArgs e)
         {
             if (timeLeftCounter.IsAlive)
+            {
+
+            }
         }
     }
 }

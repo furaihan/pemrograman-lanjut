@@ -1,6 +1,6 @@
 ﻿namespace MathQuiz
 {
-    partial class Form1
+    partial class QuizForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTimeLeft = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.plusLeftLabel = new System.Windows.Forms.Label();
@@ -45,18 +46,17 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.multLeftLabel = new System.Windows.Forms.Label();
-            this.Divide = new System.Windows.Forms.NumericUpDown();
+            this.divide = new System.Windows.Forms.NumericUpDown();
             this.divideRightLabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.divideLeftLabel = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.quizTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.multiply)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Divide)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.divide)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTimeLeft
@@ -123,6 +123,11 @@
             // 
             this.sum.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sum.Location = new System.Drawing.Point(314, 64);
+            this.sum.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.sum.Name = "sum";
             this.sum.Size = new System.Drawing.Size(100, 41);
             this.sum.TabIndex = 2;
@@ -131,6 +136,11 @@
             // 
             this.diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.diff.Location = new System.Drawing.Point(314, 132);
+            this.diff.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.diff.Name = "diff";
             this.diff.Size = new System.Drawing.Size(100, 41);
             this.diff.TabIndex = 3;
@@ -179,6 +189,11 @@
             // 
             this.multiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.multiply.Location = new System.Drawing.Point(314, 198);
+            this.multiply.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.multiply.Name = "multiply";
             this.multiply.Size = new System.Drawing.Size(100, 41);
             this.multiply.TabIndex = 4;
@@ -223,13 +238,18 @@
             this.multLeftLabel.Text = "?";
             this.multLeftLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Divide
+            // divide
             // 
-            this.Divide.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Divide.Location = new System.Drawing.Point(314, 257);
-            this.Divide.Name = "Divide";
-            this.Divide.Size = new System.Drawing.Size(100, 41);
-            this.Divide.TabIndex = 5;
+            this.divide.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.divide.Location = new System.Drawing.Point(314, 257);
+            this.divide.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.divide.Name = "divide";
+            this.divide.Size = new System.Drawing.Size(100, 41);
+            this.divide.TabIndex = 5;
             // 
             // divideRightLabel
             // 
@@ -283,35 +303,18 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnReset
+            // quizTimer
             // 
-            this.btnReset.Location = new System.Drawing.Point(21, 16);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 21;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(339, 311);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 26);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Check Result";
-            this.button1.UseVisualStyleBackColor = true;
+            this.quizTimer.Interval = 1000;
+            this.quizTimer.Tick += new System.EventHandler(this.quizTimer_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 349);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.Divide);
+            this.Controls.Add(this.divide);
             this.Controls.Add(this.divideRightLabel);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
@@ -340,7 +343,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.multiply)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Divide)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.divide)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,14 +368,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label multLeftLabel;
-        private System.Windows.Forms.NumericUpDown Divide;
+        private System.Windows.Forms.NumericUpDown divide;
         private System.Windows.Forms.Label divideRightLabel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label divideLeftLabel;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer quizTimer;
     }
 }
 

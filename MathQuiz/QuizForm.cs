@@ -32,6 +32,7 @@ namespace MathQuiz
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
+            quizTimer.Stop();
             plusLeft = random.Next(8, 100);
             plusRight = random.Next(8, 100);
             plusLeftLabel.Text = plusLeft.ToString();
@@ -79,7 +80,8 @@ namespace MathQuiz
             {
                 quizTimer.Stop();
                 DisplayCheckWhenCorrect();
-                MessageBox.Show("Selamat! Kamu benar!!");
+                MessageBox.Show("Selamat! Kamu benar!!\n" +
+                    $"Waktu Tersisa: {timeLeft:ss\\.f} detik", "Selamat!");
                 btnStart.Enabled = true;
             }
             else if (timeLeft > TimeSpan.Zero)

@@ -24,7 +24,7 @@ namespace MathQuiz
         private int multRight = 0;
         private int divLeft = 0;
         private int divRight = 0;
-        private int timeLeft = 0;
+        private TimeSpan timeLeft;
         internal bool quizStart = false;
         public QuizForm()
         {
@@ -37,18 +37,24 @@ namespace MathQuiz
             plusLeftLabel.Text = plusLeft.ToString();
             plusRightLabel.Text = plusRight.ToString();
             sum.Value = 0;
+            sum.Enabled = true;
+            plusCheck.Visible = false;
 
             minRight = random.Next(10, 50);
             minLeft = random.Next(20, 50) + minRight;
             minLeftLabel.Text = minLeft.ToString();
             minRightLabel.Text = minRight.ToString();
             diff.Value = 0;
+            diff.Enabled = true;
+            minCheck.Visible = false;
 
             multLeft = random.Next(2, 26);
             multRight = random.Next(2, 16);
             multLeftLabel.Text = multLeft.ToString();
             multRightLabel.Text = multRight.ToString();
             multiply.Value = 0;
+            multiply.Enabled = true;
+            multCheck.Visible = false; 
 
             divRight = random.Next(2, 11);
             int quotient = random.Next(2, 11);
@@ -56,9 +62,11 @@ namespace MathQuiz
             divideLeftLabel.Text = divLeft.ToString();
             divideRightLabel.Text = divRight.ToString();
             divide.Value = 0;
+            divide.Enabled = true;
+            divCheck.Visible = false;
 
-            timeLeft = 45;
-            lblTimeLeft.Text = timeLeft.ToString() + " seconds";
+            timeLeft = TimeSpan.FromSeconds(45);
+            lblTimeLeft.Text = timeLeft.ToString("ss\\.f") + " seconds";
             quizTimer.Start();
 
             btnStart.Enabled = false;
@@ -70,13 +78,15 @@ namespace MathQuiz
             if (CheckAnswer())
             {
                 quizTimer.Stop();
+                DisplayCheckWhenCorrect();
                 MessageBox.Show("Selamat! Kamu benar!!");
                 btnStart.Enabled = true;
             }
-            else if (timeLeft > 0)
+            else if (timeLeft > TimeSpan.Zero)
             {
-                timeLeft--;
-                lblTimeLeft.Text = timeLeft.ToString() + " seconds";
+                DisplayCheckWhenCorrect();
+                timeLeft -= TimeSpan.FromMilliseconds(100);
+                lblTimeLeft.Text = timeLeft.ToString("ss\\.f") + " seconds";
             }
             else
             {
@@ -88,6 +98,29 @@ namespace MathQuiz
                 multiply.Value = multLeft * multRight;
                 divide.Value = divLeft / divRight;
                 btnStart.Enabled = true;
+            } 
+        }
+        private void DisplayCheckWhenCorrect()
+        {
+            if (sum.Value == plusLeft + plusRight && sum.Enabled)
+            {
+                plusCheck.Visible = true;
+                sum.Enabled = true;
+            }
+            else if (diff.Value == minLeft - minRight && diff.Enabled)
+            {
+                minCheck.Visible = true;
+                diff.Enabled = false;
+            }
+            else if (multiply.Value == multLeft * multRight && multiply.Enabled)
+            {
+                multCheck.Visible = true;
+                multiply.Enabled = false;
+            }
+            else if (divide.Value == divLeft / divRight && divide.Enabled)
+            {
+                divCheck.Visible = true;
+                divide.Enabled = false;
             }
         }
         private bool CheckAnswer() =>

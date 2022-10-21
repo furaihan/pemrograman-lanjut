@@ -53,6 +53,11 @@
             this.divideLeftLabel = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.quizTimer = new System.Windows.Forms.Timer(this.components);
+            this.rndQuizBtn = new System.Windows.Forms.Button();
+            this.plusCheck = new System.Windows.Forms.Label();
+            this.minCheck = new System.Windows.Forms.Label();
+            this.multCheck = new System.Windows.Forms.Label();
+            this.divCheck = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.multiply)).BeginInit();
@@ -294,10 +299,10 @@
             // btnStart
             // 
             this.btnStart.AutoSize = true;
-            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(135, 305);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(182, 39);
+            this.btnStart.Size = new System.Drawing.Size(197, 39);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start The Quiz!";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -305,14 +310,79 @@
             // 
             // quizTimer
             // 
-            this.quizTimer.Interval = 1000;
             this.quizTimer.Tick += new System.EventHandler(this.quizTimer_Tick);
             // 
-            // Form1
+            // rndQuizBtn
+            // 
+            this.rndQuizBtn.Location = new System.Drawing.Point(12, 12);
+            this.rndQuizBtn.Name = "rndQuizBtn";
+            this.rndQuizBtn.Size = new System.Drawing.Size(75, 23);
+            this.rndQuizBtn.TabIndex = 21;
+            this.rndQuizBtn.Text = "Random";
+            this.rndQuizBtn.UseVisualStyleBackColor = true;
+            // 
+            // plusCheck
+            // 
+            this.plusCheck.AutoSize = true;
+            this.plusCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.plusCheck.ForeColor = System.Drawing.Color.ForestGreen;
+            this.plusCheck.Location = new System.Drawing.Point(438, 71);
+            this.plusCheck.Name = "plusCheck";
+            this.plusCheck.Size = new System.Drawing.Size(28, 29);
+            this.plusCheck.TabIndex = 22;
+            this.plusCheck.Text = "✓";
+            this.plusCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plusCheck.Visible = false;
+            // 
+            // minCheck
+            // 
+            this.minCheck.AutoSize = true;
+            this.minCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minCheck.ForeColor = System.Drawing.Color.ForestGreen;
+            this.minCheck.Location = new System.Drawing.Point(438, 139);
+            this.minCheck.Name = "minCheck";
+            this.minCheck.Size = new System.Drawing.Size(28, 29);
+            this.minCheck.TabIndex = 23;
+            this.minCheck.Text = "✓";
+            this.minCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.minCheck.Visible = false;
+            // 
+            // multCheck
+            // 
+            this.multCheck.AutoSize = true;
+            this.multCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.multCheck.ForeColor = System.Drawing.Color.ForestGreen;
+            this.multCheck.Location = new System.Drawing.Point(438, 205);
+            this.multCheck.Name = "multCheck";
+            this.multCheck.Size = new System.Drawing.Size(28, 29);
+            this.multCheck.TabIndex = 24;
+            this.multCheck.Text = "✓";
+            this.multCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.multCheck.Visible = false;
+            // 
+            // divCheck
+            // 
+            this.divCheck.AutoSize = true;
+            this.divCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.divCheck.ForeColor = System.Drawing.Color.ForestGreen;
+            this.divCheck.Location = new System.Drawing.Point(438, 264);
+            this.divCheck.Name = "divCheck";
+            this.divCheck.Size = new System.Drawing.Size(28, 29);
+            this.divCheck.TabIndex = 25;
+            this.divCheck.Text = "✓";
+            this.divCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.divCheck.Visible = false;
+            // 
+            // QuizForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 349);
+            this.Controls.Add(this.divCheck);
+            this.Controls.Add(this.multCheck);
+            this.Controls.Add(this.minCheck);
+            this.Controls.Add(this.plusCheck);
+            this.Controls.Add(this.rndQuizBtn);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.divide);
             this.Controls.Add(this.divideRightLabel);
@@ -338,7 +408,7 @@
             this.Controls.Add(this.lblTimeLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "QuizForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.sum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diff)).EndInit();
@@ -375,6 +445,11 @@
         private System.Windows.Forms.Label divideLeftLabel;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Timer quizTimer;
+        private System.Windows.Forms.Button rndQuizBtn;
+        private System.Windows.Forms.Label plusCheck;
+        private System.Windows.Forms.Label minCheck;
+        private System.Windows.Forms.Label multCheck;
+        private System.Windows.Forms.Label divCheck;
     }
 }
 

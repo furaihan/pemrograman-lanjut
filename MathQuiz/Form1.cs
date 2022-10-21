@@ -5,7 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace MathQuiz
@@ -25,7 +27,7 @@ namespace MathQuiz
         {
             InitializeComponent();
         }
-
+        Thread timeLeftCounter;
         private void btnStart_Click(object sender, EventArgs e)
         {
             plusLeft = random.Next(8, 100);
@@ -42,11 +44,26 @@ namespace MathQuiz
             multRight = random.Next(2, 15);
             multLeftLabel.Text = multLeft.ToString();
             multRightLabel.Text = multRight.ToString();
+            timeLeftCounter = new Thread(() =>
+            {
+                TimeSpan timeProvided = TimeSpan.FromMinutes(5);
+                while (true)
+                {
+                    lblTimeLeft.Text = timeProvided.ToString();
+                    Thread.Yield();
+                }    
+            });
 
             for (int i = 0; i < 100; i++)
             {
 
             }
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (timeLeftCounter.IsAlive)
         }
     }
 }

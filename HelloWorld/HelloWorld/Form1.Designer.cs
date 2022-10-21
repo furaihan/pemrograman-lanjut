@@ -34,9 +34,10 @@
             // 
             // btnClickThis
             // 
-            this.btnClickThis.Location = new System.Drawing.Point(502, 192);
+            this.btnClickThis.AutoSize = true;
+            this.btnClickThis.Location = new System.Drawing.Point(332, 208);
             this.btnClickThis.Name = "btnClickThis";
-            this.btnClickThis.Size = new System.Drawing.Size(75, 23);
+            this.btnClickThis.Size = new System.Drawing.Size(75, 26);
             this.btnClickThis.TabIndex = 0;
             this.btnClickThis.Text = "Click this";
             this.btnClickThis.UseVisualStyleBackColor = true;
@@ -45,7 +46,7 @@
             // lblHelloWorld
             // 
             this.lblHelloWorld.AutoSize = true;
-            this.lblHelloWorld.Location = new System.Drawing.Point(499, 218);
+            this.lblHelloWorld.Location = new System.Drawing.Point(345, 234);
             this.lblHelloWorld.Name = "lblHelloWorld";
             this.lblHelloWorld.Size = new System.Drawing.Size(44, 16);
             this.lblHelloWorld.TabIndex = 1;

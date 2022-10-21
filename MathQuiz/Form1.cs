@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,11 @@ namespace MathQuiz
         private int multRight = 0;
         private int divLeft = 0;
         private int divRight = 0;
+        internal bool quizStart = false;
         public Form1()
         {
             InitializeComponent();
         }
-        Thread timeLeftCounter;
         private void btnStart_Click(object sender, EventArgs e)
         {
             plusLeft = random.Next(8, 100);
@@ -44,29 +45,21 @@ namespace MathQuiz
             multRight = random.Next(2, 15);
             multLeftLabel.Text = multLeft.ToString();
             multRightLabel.Text = multRight.ToString();
-            timeLeftCounter = new Thread(() =>
-            {
-                TimeSpan timeProvided = TimeSpan.FromMinutes(5);
-                while (true)
-                {
-                    lblTimeLeft.Text = timeProvided.ToString();
-                    Thread.Yield();
-                }    
-            });
+
+            btnStart.Enabled = false;
 
             for (int i = 0; i < 100; i++)
             {
 
             }
+            quizStart = true;
 
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            if (timeLeftCounter.IsAlive)
-            {
-
-            }
+            btnStart.Enabled = true;
+            quizStart = false;
         }
     }
 }

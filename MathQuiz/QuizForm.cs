@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Forms;
 
 namespace MathQuiz
@@ -140,8 +131,6 @@ namespace MathQuiz
         {
             WindowState = FormWindowState.Minimized;
         }
-
-        //Lines below are to used to make the form draggable even thoung the form is borderless
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;

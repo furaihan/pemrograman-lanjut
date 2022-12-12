@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.IconPacks;
 
 namespace FormMahasiswa.View
 {
@@ -25,7 +26,7 @@ namespace FormMahasiswa.View
         {
             InitializeComponent();
         }
-
+        PackIconMaterialKind maximizeIcon = PackIconMaterialKind.WindowMaximize;
         private void MinimizeApp(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -39,6 +40,8 @@ namespace FormMahasiswa.View
         private void MaximizeApp(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Maximized;
+            btnRestore.Visibility = Visibility.Visible;
+            btnMaximize.Visibility = Visibility.Collapsed;
         }
 
         private void DragApp(object sender, MouseButtonEventArgs e)
@@ -68,6 +71,13 @@ namespace FormMahasiswa.View
             {
                 e.CancelCommand();
             }
+        }
+
+        private void RestoreApp(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Normal;
+            btnMaximize.Visibility = Visibility.Visible;
+            btnRestore.Visibility = Visibility.Collapsed;
         }
     }
 }

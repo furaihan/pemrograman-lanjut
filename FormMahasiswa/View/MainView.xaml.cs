@@ -59,9 +59,9 @@ namespace FormMahasiswa.View
 
         private void NumericPasteValidation(object sender, DataObjectPastingEventArgs e)
         {
-            if (e.DataObject.GetDataPresent(typeof(String)))
+            if (e.DataObject.GetDataPresent(typeof(string)))
             {
-                String text = (String)e.DataObject.GetData(typeof(String));
+                string text = (string)e.DataObject.GetData(typeof(string));
                 if (!Regex.IsMatch(text, "[^0-9]+"))
                 {
                     e.CancelCommand();

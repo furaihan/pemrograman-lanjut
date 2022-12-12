@@ -18,6 +18,9 @@ namespace FormMahasiswa.ViewModel
         private ICommand saveCommand;
         private ICommand resetCommand;
         private ObservableCollection<Mahasiswa> dataContext;
+        private string errorMessage;
+        private Mahasiswa? selectedItem;
+        private ICommand deleteCommand;
 
         public string Name
         {
@@ -58,6 +61,24 @@ namespace FormMahasiswa.ViewModel
                 OnPropertyChanged();
             }
         }
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+        public Mahasiswa? SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged();
+            }
+        }
         public ObservableCollection<Mahasiswa> DataContext
         {
             get => dataContext;
@@ -70,10 +91,13 @@ namespace FormMahasiswa.ViewModel
 
         public ICommand SaveCommand { get => saveCommand; set => saveCommand = value; }
         public ICommand ResetCommand { get => resetCommand; set => resetCommand = value; }
+        public ICommand DeleteCommand { get => deleteCommand; set => deleteCommand = value; }
         public MahasiswaViewModel()
         {
             dataContext = new ObservableCollection<Mahasiswa>();
             saveCommand = new ViewModelCommand(ExecuteSaveCommand, CanExecuteSaveCommand);
+            resetCommand = new ViewModelCommand(ExecuteResetCommand, CanExecuteResetCommand);
+            deleteCommand = new ViewModelCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
         }
         private bool CanExecuteSaveCommand(object obj)
         {
@@ -84,14 +108,49 @@ namespace FormMahasiswa.ViewModel
         }
         private void ExecuteSaveCommand(object obj)
         {
-            Mahasiswa mahasiswa = new Mahasiswa();
-            mahasiswa.Name = Name;
-            mahasiswa.Address = Address;
-            mahasiswa.Contact = Contact;
-            mahasiswa.Age = age;
+            foreach (var item in dataContext)
+            {
+                if (item.Name == name &&
+                    item.Contact == contact &&
+                    item.Address == address &&
+                    item.Age == age)
+                {
+                    ErrorMessage = "The specified entities already exist! Please Reset";
+                    return;
+                }
+            }
+            Mahasiswa mahasiswa = new()
+            {
+                Name = name,
+                Address = address,
+                Contact = contact,
+                Age = age
+            };
             DataContext.Add(mahasiswa);
         }
-
+        private bool CanExecuteResetCommand(object obj)
+        {
+            return !string.IsNullOrWhiteSpace(Name) ||
+                !string.IsNullOrWhiteSpace(Address) ||
+                !string.IsNullOrWhiteSpace(Contact) ||
+                age > 0;
+        }
+        private void ExecuteResetCommand(object obj)
+        {
+            Name = string.Empty;
+            Address = string.Empty;
+            Contact = string.Empty;
+            Age = 0;
+            ErrorMessage = string.Empty;
+        }
+        private bool CanExecuteDeleteCommand(object obj)
+        {
+            return selectedItem != null;
+        }
+        private void ExecuteDeleteCommand(object obj)
+        {
+            ErrorMessage = "Not Implemented";
+        }
 
 
 

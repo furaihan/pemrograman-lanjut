@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormMahasiswa"
         xmlns:viewModel="clr-namespace:FormMahasiswa.ViewModel"
+        xmlns:converter="clr-namespace:FormMahasiswa.ViewModel.Converter"
         xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MainWindow"
@@ -18,7 +19,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.6*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
@@ -30,10 +31,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
-                    Margin="5">
+                    Margin="0,0,8,0">
                 <Button                    
                     BorderThickness="0"
                     Foreground="White"
@@ -227,24 +228,56 @@
                          Text="{Binding Path=Contact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Grid.Row="5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="10">
+                <TextBlock Height="25" 
+                           Width="380"
+                           Foreground="Red"
+                           Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <Label Height="25" 
+                           Width="380"
+                           Foreground="Red">
+                    <Label.Resources>
+                        <converter:MahasiswaConverter x:Key="mhsConv"/>
+                    </Label.Resources>
+                    <Label.Content>
+                        <Binding Path="SelectedItem"
+                                 UpdateSourceTrigger="PropertyChanged"
+                                 Mode="OneWay"
+                                 Converter="{StaticResource mhsConv}"/>
+                    </Label.Content>
+                </Label>
+            </StackPanel>
+            <StackPanel Grid.Row="5"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal"
                     Margin="10">
                 <Button Width="75"
                     Height="25"
+                    Content="Delete"
+                    Margin="0,0,8,0"
+                        Background="Red"
+                        Command="{Binding DeleteCommand}"/>
+                <Button Width="75"
+                    Height="25"
                     Content="Save"
                     Margin="0,0,8,0"
+                        Background="LimeGreen"
                         Command="{Binding SaveCommand}"/>
                 <Button Width="75"
                     Height="25"
-                    Content="Cancel"/>
+                    Content="Reset"
+                        Background="Tomato"
+                        Command="{Binding ResetCommand}"/>
             </StackPanel>
         </Grid>
         <DataGrid Grid.Row="2"
                   Margin="5"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding DataContext, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   IsReadOnly="True">

@@ -80,6 +80,7 @@
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "Stretch";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -103,6 +104,7 @@
             this.showBtn.TabIndex = 0;
             this.showBtn.Text = "Show A Picture";
             this.showBtn.UseVisualStyleBackColor = true;
+            this.showBtn.Click += new System.EventHandler(this.showBtn_Click);
             // 
             // clearBtn
             // 
@@ -113,6 +115,7 @@
             this.clearBtn.TabIndex = 1;
             this.clearBtn.Text = "Clear the picture";
             this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // bgBtn
             // 
@@ -123,6 +126,7 @@
             this.bgBtn.TabIndex = 2;
             this.bgBtn.Text = "Set the bg color";
             this.bgBtn.UseVisualStyleBackColor = true;
+            this.bgBtn.Click += new System.EventHandler(this.bgBtn_Click);
             // 
             // closeBtn
             // 
@@ -133,6 +137,7 @@
             this.closeBtn.TabIndex = 3;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // openFileDialog1
             // 
@@ -148,7 +153,7 @@
             this.ClientSize = new System.Drawing.Size(954, 517);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "21.11.4341";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

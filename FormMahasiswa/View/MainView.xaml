@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormMahasiswa"
         xmlns:viewModel="clr-namespace:FormMahasiswa.ViewModel"
-        xmlns:converter="clr-namespace:FormMahasiswa.ViewModel.Converter"
         xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MainWindow"
@@ -235,19 +234,6 @@
                            Width="380"
                            Foreground="Red"
                            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                <Label Height="25" 
-                           Width="380"
-                           Foreground="Red">
-                    <Label.Resources>
-                        <converter:MahasiswaConverter x:Key="mhsConv"/>
-                    </Label.Resources>
-                    <Label.Content>
-                        <Binding Path="SelectedItem"
-                                 UpdateSourceTrigger="PropertyChanged"
-                                 Mode="OneWay"
-                                 Converter="{StaticResource mhsConv}"/>
-                    </Label.Content>
-                </Label>
             </StackPanel>
             <StackPanel Grid.Row="5"
                     HorizontalAlignment="Right"
